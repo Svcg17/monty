@@ -1,37 +1,27 @@
 #include "monty.h"
 
-int main(void)
+int main(int argc, char **argv)
 {
-
-	char *buff = NULL;
-	char *tokens;
-	ssize_t n;
-	size_t nLines, i;
+	size_t i;
+	unsigned int nLine = 0;
+	char str[100];
 	stack_t *head;
+	char *token;
+	FILE *fp;
 
-
-	head = NULL;
-	nLines = 0;
-	n = getline(&buff, 0, stdin);
-	if (buff == NULL)
-		exit(99);
-	for (i = 0; buff[i] != NULL; i++)
-		;
-	if (i < 2)
+	if (argc < 1)
+		exit (101);
+	fp = fopen(argv[1], "r");
+	while (fgets(str, 100, fp))
 	{
-		exit(111);
-	}
-	tokens = strtok(buff, " \t");
-	while (tokens != NULL)
-	{
-		(*get_line(tokens))(&head, nLines)
-			continue;
-		tokens = strtok(NULL, " \t");
-		if (strcmp(tokens, "\n") == 0)
+		nLine++;
+		token = strtok(str, " \t");
+		while (token != NULL)
 		{
-			nLines++;
-			continue;
+			(*get_line(token))(&head, nLine);
+			token = strtok(NULL, " \t");
 		}
 	}
+	printf("%u\n", nLine);
 	return (0);
 }
