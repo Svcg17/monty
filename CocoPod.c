@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <errno.h>
 
 int read_input(char *input, stack_t **head)
 {
@@ -7,19 +8,23 @@ int read_input(char *input, stack_t **head)
 	int line_count = 0;
 	ssize_t line_size = 0;
 	FILE *fp = NULL;
-
-	fp = fopen("bytecodes/00.m", "r");
+	
+	fp = fopen(input, "r");
 	if (fp == NULL)
 	{
-		printf("Bad reading\n");
-		exit(101);
+		fprintf(stderr, "Error: Can't open file <%s>\n", input);
+		exit(EXIT_FAILURE);
 	}
 	line_size = getline(&buff, &buff_size, fp);
+	if (line_size < 0)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", input);
+		exit(EXIT_FAILURE);
+	}
 	while (line_size >= 0)
 	{
 		line_count += 1;
-		if (tokenize_input(buff, head, line_count) == 0)
-			return (0);
+		tokenize_input(buff, head, line_count);
 		line_size = getline(&buff, &buff_size, fp);
 	}
 	free(buff);
@@ -37,8 +42,8 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 	num = strtok(NULL, " \t\n");
 	if (strtok(NULL, " \t\n") != NULL)
 	{
-		printf("Something is wrong\n");
-		return (0);
+		perror("USAGE: monty file");
+		exit(EXIT_FAILURE);
 	}
 
 	if (num != NULL && strcmp(tok, "push") == 0)
@@ -47,11 +52,13 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 		if (number != 0 || (strcmp(num, "0") == 0))
 			_push(head, number);
 		else
-			printf("Error\n");
+		{
+			fprintf(stderr, "L<%d>: usage: push integer\n", lineNum);
+			exit(EXIT_FAILURE);
+		}
 	}
 	else if (tok != NULL)
 	{
-		printf("Calling Coco with tok: %s\n", tok);
 		getCoco(tok, head, lineNum);
 	}
 	return (1);

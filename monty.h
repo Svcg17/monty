@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <errno.h>
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -47,4 +48,10 @@ int tokenize_input(char *str, stack_t **head, unsigned int line_num);
 int getCoco(char *str, stack_t **stack, unsigned int line_number);
 int read_input(char *input, stack_t **head);
 void _pall (stack_t **head, unsigned int lineN);
+void _pint (stack_t **head, unsigned int lineN);
+void _pop (stack_t **head, unsigned int lineN);
+void _swap (stack_t **head, unsigned int lineN);
+
+
+
 #endif
