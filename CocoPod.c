@@ -1,6 +1,11 @@
 #include "monty.h"
 #include <errno.h>
-
+/**
+ * read_input - opens and reads a file
+ * @input: input from first command line argument
+ * @head: pointer to the first node in the list
+ * Return: 1 or 0
+ */
 int read_input(char *input, stack_t **head)
 {
 	char *buff = NULL;
@@ -32,7 +37,13 @@ int read_input(char *input, stack_t **head)
 	return (1);
 }
 
-
+/**
+ * tokenize_input - tokenizes input read and checks for push
+ * @input: input from first argument in command line.
+ * @head: pointer to the first node of the list
+ * @lineNum: number of lines
+ * Return: 1 or 0
+ */
 int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 {
 	char *tok, *num;
