@@ -51,7 +51,7 @@ void _pall (stack_t **head, unsigned int lineN);
 void _pint (stack_t **head, unsigned int lineN);
 void _pop (stack_t **head, unsigned int lineN);
 void _swap (stack_t **head, unsigned int lineN);
-
-
+void _add(stack_t **head, unsigned int lineN);
+void _nop(stack_t **head, unsigned int lineN);
 
 #endif

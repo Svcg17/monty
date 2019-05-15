@@ -8,7 +8,7 @@ int read_input(char *input, stack_t **head)
 	int line_count = 0;
 	ssize_t line_size = 0;
 	FILE *fp = NULL;
-	
+
 	fp = fopen(input, "r");
 	if (fp == NULL)
 	{

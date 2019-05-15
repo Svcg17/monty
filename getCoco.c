@@ -5,10 +5,12 @@ int getCoco(char *str, stack_t **stack, unsigned int line_number)
 	size_t i;
 
 	instruction_t ops[] = {
+		{"add", _add},
 		{"pint", _pint},
 		{"pop", _pop},
 		{"pall", _pall},
 		{"swap", _swap},
+		{"nop", _nop},
 		{NULL, NULL}
 	};
 
