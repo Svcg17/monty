@@ -45,7 +45,6 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 		perror("USAGE: monty file");
 		exit(EXIT_FAILURE);
 	}
-
 	if (num != NULL && strcmp(tok, "push") == 0)
 	{
 		number = atoi(num);
@@ -56,6 +55,11 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 			fprintf(stderr, "L<%d>: usage: push integer\n", lineNum);
 			exit(EXIT_FAILURE);
 		}
+	}
+	else if (num == NULL)
+	{
+		fprintf(stderr, "L<%u>: usage: push integer\n", lineNum);
+		exit(EXIT_FAILURE);
 	}
 	else if (tok != NULL)
 	{
