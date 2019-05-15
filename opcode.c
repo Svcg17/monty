@@ -1,5 +1,10 @@
 #include "monty.h"
-void _push (stack_t **head, int num)
+/**
+ * _push - pushes an element to the stack
+ * @head: pointer to the first node of the list
+ * @num: integer to push
+ */
+void _push(stack_t **head, int num)
 {
 	stack_t *new = malloc(sizeof(stack_t));
 
@@ -17,10 +22,15 @@ void _push (stack_t **head, int num)
 	new->next = *head;
 	*head = new;
 }
-
-void _pall (stack_t **head, unsigned int lineN)
+/**
+ * _pall - prints all the values on the stack
+ * @head: pointer to the first node of the list
+ * @lineN: number of lines
+ */
+void _pall(stack_t **head, unsigned int lineN)
 {
 	stack_t *temp = *head;
+
 	while (temp != NULL)
 	{
 		printf("%d\n", (temp)->n);
@@ -28,7 +38,11 @@ void _pall (stack_t **head, unsigned int lineN)
 	}
 	lineN = lineN;
 }
-
+/**
+ * _pint - prints the value at the top of the stack
+ * @head: pointer to the first node of the list
+ * @lineN: number of  lines.
+ */
 void _pint (stack_t **head, unsigned int lineN)
 {
 	if (*head == NULL)
@@ -40,16 +54,21 @@ void _pint (stack_t **head, unsigned int lineN)
 		printf("%d\n", (*head)->n);
 }
 
+/**
+ * _add - adds the top two elements of the stack
+ * @head: pointer to the first node of the list
+ * @lineN: number of lines
+ */
 void _add(stack_t **head, unsigned int lineN)
 {
 	int temp;
 
-        if (*head == NULL || (*head)->next == NULL)
-        {
-                fprintf(stderr, "L<%d>: can't swap, stack too short\n", lineN);
-                exit(EXIT_FAILURE);
-        }
+	if (*head == NULL || (*head)->next == NULL)
+	{
+		fprintf(stderr, "L<%d>: can't swap, stack too short\n", lineN);
+		exit(EXIT_FAILURE);
+	}
 	temp = (*head)->n;
 	_pop(head, lineN);
-        (*head)->n = (*head)->n + temp;
+	(*head)->n = (*head)->n + temp;
 }
