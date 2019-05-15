@@ -17,9 +17,9 @@
  */
 typedef struct stack_s
 {
-        int n;
-        struct stack_s *prev;
-        struct stack_s *next;
+	int n;
+	struct stack_s *prev;
+	struct stack_s *next;
 } stack_t;
 
 
@@ -33,24 +33,18 @@ typedef struct stack_s
  */
 typedef struct instruction_s
 {
-        char *opcode;
-        void (*f)(stack_t **stack, unsigned int line_number);
+	char *opcode;
+	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
-typedef struct args
-{
-	char *str;
-	int value;
-} args_t;
 
 void _push(stack_t **head, int value);
 int tokenize_input(char *str, stack_t **head, unsigned int line_num);
 int getCoco(char *str, stack_t **stack, unsigned int line_number);
 int read_input(char *input, stack_t **head);
-void _pall (stack_t **head, unsigned int lineN);
-void _pint (stack_t **head, unsigned int lineN);
-void _pop (stack_t **head, unsigned int lineN);
-void _swap (stack_t **head, unsigned int lineN);
+void _pall(stack_t **head, unsigned int lineN);
+void _pint(stack_t **head, unsigned int lineN);
+void _pop(stack_t **head, unsigned int lineN);
+void _swap(stack_t **head, unsigned int lineN);
 void _add(stack_t **head, unsigned int lineN);
 void _nop(stack_t **head, unsigned int lineN);
 

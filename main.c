@@ -1,6 +1,6 @@
 #include "monty.h"
 /**
- * free_dlistint - free a dlistint_t list
+ * free_dstack - free a dstack_t list
  * @head: list to be freed.
  */
 void free_dstack(stack_t *head)
@@ -14,6 +14,13 @@ void free_dstack(stack_t *head)
 		free(t);
 	}
 }
+
+/**
+ *main - takes arguments and opens a file
+ *@argc: Argument count
+ *@argv: A string of arguments
+ *Return: returns exit success if all goes well
+ */
 int main(int argc, char **argv)
 {
 	stack_t *head = NULL;
@@ -29,5 +36,5 @@ int main(int argc, char **argv)
 		exit(EXIT_FAILURE);
 	}
 	free_dstack(head);
-	return (0);
+	return (EXIT_SUCCESS);
 }
