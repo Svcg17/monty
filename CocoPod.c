@@ -67,7 +67,7 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 			exit(EXIT_FAILURE);
 		}
 	}
-	else if (num == NULL)
+	else if (num == NULL && strcmp(tok, "push") == 0)
 	{
 		fprintf(stderr, "L<%u>: usage: push integer\n", lineNum);
 		exit(EXIT_FAILURE);
