@@ -6,13 +6,13 @@
  */
 void _pop(stack_t **head, unsigned int lineN)
 {
-        stack_t *temp = NULL;
+	stack_t *temp = NULL;
 
-        if (*head == NULL)
-                print_errors(6, NULL, lineN, NULL);
-        temp = *head;
-        *head = (*head)->next;
-        free(temp);
+	if (*head == NULL)
+		print_errors(6, NULL, lineN, NULL);
+	temp = *head;
+	*head = (*head)->next;
+	free(temp);
 }
 /**
  * _swap - swaps the top two elements of the stack.
@@ -23,11 +23,11 @@ void _swap(stack_t **head, unsigned int lineN)
 {
 	int temp;
 
-        if (*head == NULL || (*head)->next == NULL)
-                print_errors(5, NULL, lineN, NULL);
-        temp = (*head)->n;
-        (*head)->n = (*head)->next->n;
-        (*head)->next->n = temp;
+	if (*head == NULL || (*head)->next == NULL)
+		print_errors(5, NULL, lineN, NULL);
+	temp = (*head)->n;
+	(*head)->n = (*head)->next->n;
+	(*head)->next->n = temp;
 }
 /**
  * _nop - doesn't do anything
@@ -48,23 +48,23 @@ void _nop(stack_t **head, unsigned int lineN)
  */
 void print_errors(int error, char *str, unsigned int line, stack_t *head)
 {
-        if (error == 0)
-                fprintf(stderr, "USAGE: monty file\n");
-        if (error == 1)
-                fprintf(stderr, "Error: Can't open file %s\n", str);
-        else if (error == 2)
-                fprintf(stderr, "L%d: usage: push integer\n", line);
-        else if (error == 3)
-                fprintf(stderr, "L%d: can't pint, stack empty\n", line);
-        else if (error == 4)
-                fprintf(stderr, "L%d: can't add stack too short\n", line);
-        else if (error == 5)
-                fprintf(stderr, "L%d: can't swap, stack too short\n", line);
-        else if (error == 6)
-                fprintf(stderr, "L%d: can't pop an empty stack", line);
-        else if (error == 7)
-                fprintf(stderr, "L%d: unknown instruction %s", line, str);
-        if (head != NULL)
-                free_dstack(head);
-        exit(EXIT_FAILURE);
+	if (error == 0)
+		fprintf(stderr, "USAGE: monty file\n");
+	if (error == 1)
+		fprintf(stderr, "Error: Can't open file %s\n", str);
+	else if (error == 2)
+		fprintf(stderr, "L%d: usage: push integer\n", line);
+	else if (error == 3)
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line);
+	else if (error == 4)
+		fprintf(stderr, "L%d: can't add stack too short\n", line);
+	else if (error == 5)
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line);
+	else if (error == 6)
+		fprintf(stderr, "L%d: can't pop an empty stack", line);
+	else if (error == 7)
+		fprintf(stderr, "L%d: unknown instruction %s", line, str);
+	if (head != NULL)
+		free_dstack(head);
+	exit(EXIT_FAILURE);
 }

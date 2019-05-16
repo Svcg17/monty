@@ -46,9 +46,9 @@ void _pall(stack_t **head, unsigned int lineN)
 void _pint (stack_t **head, unsigned int lineN)
 {
 	if (*head == NULL)
-                print_errors(3, NULL, lineN, *head);
-        else
-                printf("%d\n", (*head)->n);
+		print_errors(3, NULL, lineN, *head);
+	else
+		printf("%d\n", (*head)->n);
 }
 
 /**
@@ -58,11 +58,11 @@ void _pint (stack_t **head, unsigned int lineN)
  */
 void _add(stack_t **head, unsigned int lineN)
 {
-	 int temp;
+	int temp;
 
-        if (*head == NULL || ((*head)->prev == NULL && (*head)->next == NULL))
-                print_errors(4, NULL, lineN, *head);
-        temp = (*head)->n;
-        _pop(head, lineN);
-        (*head)->n = (*head)->n + temp;
+	if (*head == NULL || ((*head)->prev == NULL && (*head)->next == NULL))
+		print_errors(4, NULL, lineN, *head);
+	temp = (*head)->n;
+	_pop(head, lineN);
+	(*head)->n = (*head)->n + temp;
 }
