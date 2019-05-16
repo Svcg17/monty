@@ -23,18 +23,12 @@ void free_dstack(stack_t *head)
  */
 int main(int argc, char **argv)
 {
+
 	stack_t *head = NULL;
 
 	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	if (read_input(argv[1], &head) == 0)
-	{
-		fprintf(stderr, "Error: Can't open file <%s>\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
+		print_errors(0, NULL, 0, NULL);
+	read_input(argv[1], &head);
 	free_dstack(head);
 	return (EXIT_SUCCESS);
 }

@@ -10,7 +10,6 @@
 int getCoco(char *str, stack_t **stack, unsigned int lineN)
 {
 	size_t i;
-
 	instruction_t ops[] = {
 		{"add", _add},
 		{"pint", _pint},
@@ -28,9 +27,6 @@ int getCoco(char *str, stack_t **stack, unsigned int lineN)
 			return (1);
 		}
 	if (ops[i].opcode == NULL)
-	{
-		fprintf(stderr, "L<%u>: unknown instruction <%s>\n", lineN, str);
-		exit(EXIT_FAILURE);
-	}
-	return (0);
+		return (-1);
+	return (1);
 }
