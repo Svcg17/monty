@@ -63,6 +63,8 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 
 	tok = strtok(input, " \t\n");
 	num = strtok(NULL, " \t\n");
+	if (tok == NULL)
+		return (1);
 	if (num != NULL && strcmp(tok, "push") == 0)
 	{
 		number = atoi(num);
