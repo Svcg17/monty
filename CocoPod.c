@@ -56,7 +56,7 @@ int read_input(char *input, stack_t **head)
 		{
 			free(buff);
 			fclose(fp);
-			print_errors(7, buff, line_count, *head);
+			exit(EXIT_FAILURE);
 		}
 		line_size = getline(&buff, &buff_size, fp);
 	}
@@ -100,7 +100,10 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 	else if (tok != NULL)
 	{
 		if (getCoco(tok, head, lineNum) == -1)
+		{
+			print_errors(7, tok, lineNum, *head);
 			return (-2);
+		}
 	}
 	return (1);
 }
