@@ -48,6 +48,9 @@ void _nop(stack_t **head, unsigned int lineN)
  */
 void print_errors(int error, char *str, unsigned int line, stack_t *head)
 {
+	if (head != NULL)
+		free_dstack(head);
+
 	if (error == 0)
 		fprintf(stderr, "USAGE: monty file\n");
 	if (error == 1)
@@ -63,8 +66,9 @@ void print_errors(int error, char *str, unsigned int line, stack_t *head)
 	else if (error == 6)
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line);
 	else if (error == 7)
+	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line, str);
-	if (head != NULL)
-		free_dstack(head);
+		return;
+	}
 	exit(EXIT_FAILURE);
 }
