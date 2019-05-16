@@ -63,30 +63,22 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 
 	tok = strtok(input, " \t\n");
 	num = strtok(NULL, " \t\n");
-	if (strtok(NULL, " \t\n") != NULL)
-	{
-		perror("USAGE: monty file");
-		exit(EXIT_FAILURE);
-	}
 	if (num != NULL && strcmp(tok, "push") == 0)
 	{
 		number = atoi(num);
 		if (number != 0 || (strcmp(num, "0") == 0))
 			_push(head, number);
 		else
-		{
-			fprintf(stderr, "L<%d>: usage: push integer\n", lineNum);
-			exit(EXIT_FAILURE);
-		}
+			return (-1);
 	}
 	else if (num == NULL && strcmp(tok, "push") == 0)
 	{
-		fprintf(stderr, "L<%u>: usage: push integer\n", lineNum);
-		exit(EXIT_FAILURE);
+		return (-1);
 	}
 	else if (tok != NULL)
 	{
-		getCoco(tok, head, lineNum);
+		if (getCoco(tok, head, lineNum) == -1)
+			return (-2);
 	}
 	return (1);
 }
