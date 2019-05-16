@@ -1,5 +1,16 @@
 #include "monty.h"
 #include <errno.h>
+
+int checkNum(char *str)
+{
+	size_t i;
+	for (i = str[0] == '-' ? 1 : 0; str[i] != '\0'; i++)
+	{
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+	}
+	return (1);
+}
 /**
  * read_input - opens and reads a file
  * @input: input from first command line argument
@@ -63,10 +74,12 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 
 	tok = strtok(input, " \t\n");
 	num = strtok(NULL, " \t\n");
-	if (tok == NULL)
-		return (1);
 	if (num != NULL && strcmp(tok, "push") == 0)
 	{
+		if (!checkNum(num))
+		{
+			return (-1);
+		}
 		number = atoi(num);
 		if (number != 0 || (strcmp(num, "0") == 0))
 			_push(head, number);
