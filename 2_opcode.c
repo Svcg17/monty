@@ -61,9 +61,9 @@ void print_errors(int error, char *str, unsigned int line, stack_t *head)
 	else if (error == 5)
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line);
 	else if (error == 6)
-		fprintf(stderr, "L%d: can't pop an empty stack", line);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line);
 	else if (error == 7)
-		fprintf(stderr, "L%d: unknown instruction %s", line, str);
+		fprintf(stderr, "L%d: unknown instruction %s\n", line, str);
 	if (head != NULL)
 		free_dstack(head);
 	exit(EXIT_FAILURE);
