@@ -60,7 +60,7 @@ void print_errors(int error, char *str, unsigned int line, stack_t *head)
 	else if (error == 3)
 		fprintf(stderr, "L%d: can't pint, stack empty\n", line);
 	else if (error == 4)
-		fprintf(stderr, "L%d: can't add stack too short\n", line);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line);
 	else if (error == 5)
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line);
 	else if (error == 6)
