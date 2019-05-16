@@ -75,12 +75,12 @@ void print_errors(int error, char *str, unsigned int line, stack_t *head)
 	else if (error == 9)
 		fprintf(stderr, "L%d: can't div, stack too short\n", line);
 	else if (error == 10)
-		fprintf(stderr, "L%d: division by zero", line);
+		fprintf(stderr, "L%d: division by zero\n", line);
 	else if (error == 11)
-		fprintf(stderr, "L%d: can't mul, stack too short", line);
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line);
 	else if (error == 12)
-		fprintf(stderr, "L%d: can't mod, stack too short", line);
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line);
 	else if (error == 13)
-		fprintf(stderr, "L%d: division by zero", line);
+		fprintf(stderr, "L%d: division by zero\n", line);
 	exit(EXIT_FAILURE);
 }
