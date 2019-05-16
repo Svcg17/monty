@@ -53,5 +53,6 @@ void _sub(stack_t **head, unsigned int lineN);
 void _div(stack_t **head, unsigned int lineN);
 void _mul(stack_t **head, unsigned int lineN);
 void _mod(stack_t **head, unsigned int lineN);
+void closePoint(FILE *fp, char *buff);
 
 #endif

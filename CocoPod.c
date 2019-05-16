@@ -1,5 +1,17 @@
 #include "monty.h"
 #include <errno.h>
+
+/**
+ *closePoint - Closes and free pointers from memory
+ *@fp: The File pointer
+ *@buff: The allocated string from getline
+ */
+void closePoint(FILE *fp, char *buff)
+{
+	fclose(fp);
+	free(buff);
+}
+
 /**
  * checkNum - checks if token passed is a number
  * @str: token
@@ -25,43 +37,43 @@ int checkNum(char *str)
 int read_input(char *input, stack_t **head)
 {
 	char *buff = NULL;
-	int ret;
+	int ret = 0;
 	size_t buff_size = 0;
 	int line_count = 0;
 	ssize_t line_size = 0;
 	FILE *fp = NULL;
 
-	ret = 0;
 	fp = fopen(input, "r");
 	if (fp == NULL)
 		print_errors(1, input, 0, *head);
 	line_size = getline(&buff, &buff_size, fp);
 	if (line_size == -1)
 	{
-		free(buff);
-		fclose(fp);
+		closePoint(fp, buff);
 		print_errors(1, NULL, line_count, *head);
 	}
 	while (line_size >= 0)
 	{
+		if (buff[0] == '#')
+		{
+			line_size = getline(&buff, &buff_size, fp);
+			continue;
+		}
 		line_count += 1;
 		ret = tokenize_input(buff, head, line_count);
 		if (ret == -1)
 		{
-			free(buff);
-			fclose(fp);
+			closePoint(fp, buff);
 			print_errors(2, NULL, line_count, *head);
 		}
 		else if (ret == -2)
 		{
-			free(buff);
-			fclose(fp);
+			closePoint(fp, buff);
 			exit(EXIT_FAILURE);
 		}
 		line_size = getline(&buff, &buff_size, fp);
 	}
-	free(buff);
-	fclose(fp);
+	closePoint(fp, buff);
 	return (1);
 }
 
