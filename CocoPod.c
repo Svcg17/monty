@@ -84,14 +84,9 @@ int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 	if (num != NULL && strcmp(tok, "push") == 0)
 	{
 		if (!checkNum(num))
-		{
 			return (-1);
-		}
 		number = atoi(num);
-		if (number != 0 || (strcmp(num, "0") == 0))
 			_push(head, number);
-		else
-			return (-1);
 	}
 	else if (num == NULL && strcmp(tok, "push") == 0)
 	{
