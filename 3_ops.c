@@ -14,6 +14,8 @@ void _sub(stack_t **head, unsigned int lineN)
 	temp = (*head)->n;
 	_pop(head, lineN);
 	(*head)->n = (*head)->n - temp;
+	if ((*head)->n < 0)
+		(*head)->n = -(*head)->n;
 }
 
 /**

@@ -49,5 +49,9 @@ void _add(stack_t **head, unsigned int lineN);
 void print_errors(int error, char *str, unsigned int line, stack_t *head);
 void free_dstack(stack_t *head);
 void _nop(stack_t **head, unsigned int lineN);
+void _sub(stack_t **head, unsigned int lineN);
+void _div(stack_t **head, unsigned int lineN);
+void _mul(stack_t **head, unsigned int lineN);
+void _mod(stack_t **head, unsigned int lineN);
 
 #endif

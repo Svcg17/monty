@@ -17,6 +17,10 @@ int getCoco(char *str, stack_t **stack, unsigned int lineN)
 		{"pall", _pall},
 		{"swap", _swap},
 		{"nop", _nop},
+		{"sub", _sub},
+		{"mul", _mul},
+		{"div", _div},
+		{"mod", _mod},
 		{NULL, NULL}
 	};
 
