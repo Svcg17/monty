@@ -9,32 +9,44 @@
 int read_input(char *input, stack_t **head)
 {
 	char *buff = NULL;
-	size_t buff_size = 0;
-	int line_count = 0;
-	ssize_t line_size = 0;
-	FILE *fp = NULL;
+        int ret;
+        size_t buff_size = 0;
+        int line_count = 0;
+        ssize_t line_size = 0;
+        FILE *fp = NULL;
 
-	fp = fopen(input, "r");
-	if (fp == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file <%s>\n", input);
-		exit(EXIT_FAILURE);
-	}
-	line_size = getline(&buff, &buff_size, fp);
-	if (line_size < 0)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", input);
-		exit(EXIT_FAILURE);
-	}
-	while (line_size >= 0)
-	{
-		line_count += 1;
-		tokenize_input(buff, head, line_count);
-		line_size = getline(&buff, &buff_size, fp);
-	}
-	free(buff);
-	fclose(fp);
-	return (1);
+        ret = 0;
+        fp = fopen(input, "r");
+        if (fp == NULL)
+                print_errors(1, input, 0, *head);
+        line_size = getline(&buff, &buff_size, fp);
+        if (line_size == -1)
+        {
+                free(buff);
+                fclose(fp);
+                print_errors(1, NULL, line_count, *head);
+        }
+        while (line_size >= 0)
+        {
+                line_count += 1;
+                ret = tokenize_input(buff, head, line_count);
+                if (ret == -1)
+                {
+                        free(buff);
+                        fclose(fp);
+                        print_errors(2, NULL, line_count, *head);
+                }
+                else if (ret == -2)
+                {
+                        free(buff);
+                        fclose(fp);
+                        print_errors(7, buff, line_count, *head);
+                }
+                line_size = getline(&buff, &buff_size, fp);
+        }
+        free(buff);
+        fclose(fp);
+        return (1);
 }
 
 /**
@@ -46,8 +58,8 @@ int read_input(char *input, stack_t **head)
  */
 int tokenize_input(char *input, stack_t **head, unsigned int lineNum)
 {
-	char *tok, *num;
-	int number;
+       char *tok, *num;
+       int number;
 
 	tok = strtok(input, " \t\n");
 	num = strtok(NULL, " \t\n");
