@@ -1,9 +1,14 @@
 #include "monty.h"
 #include <errno.h>
-
+/**
+ * checkNum - checks if token passed is a number
+ * @str: token
+ * Return: 0 if there's a match
+ */
 int checkNum(char *str)
 {
 	size_t i;
+
 	for (i = str[0] == '-' ? 1 : 0; str[i] != '\0'; i++)
 	{
 		if (str[i] < '0' || str[i] > '9')
