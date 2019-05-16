@@ -1,5 +1,27 @@
 #include "monty.h"
+#include <ctype.h>
 #include <errno.h>
+
+/**
+ *isComt - Checks if string is a comment
+ *@str: The string to check for #
+ *Return: returns 1 if str is a comment, else returns 0
+ */
+int isComt(char *str)
+{
+	size_t i;
+
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (isspace(str[i]))
+			continue;
+		if (str[i] == '#')
+			return (1);
+		else
+			return (0);
+	}
+	return (0);
+}
 
 /**
  *closePoint - Closes and free pointers from memory
@@ -54,7 +76,7 @@ int read_input(char *input, stack_t **head)
 	}
 	while (line_size >= 0)
 	{
-		if (buff[0] == '#')
+		if (isComt(buff) == 1)
 		{
 			line_size = getline(&buff, &buff_size, fp);
 			continue;
